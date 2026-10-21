@@ -11,3 +11,5 @@ second_char = name[1] # this will give us the second letter a , dont believe me 
 print("Your name is : " , name , " and your names first letter is : " , first_char , " and second letter is : " , second_char) # this will give us and output of Sardor , S  and a 
 
 
+
+

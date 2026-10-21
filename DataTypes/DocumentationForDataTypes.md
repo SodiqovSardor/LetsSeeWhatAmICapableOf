@@ -181,3 +181,9 @@ second_char = name[1]  # "a"  → second letter
 > **Note:** Python has very powerful **string methods**, but this is the
 > first documentation — just the starting point. They come in the next
 > documentation.
+
+# 4. Boolean (`bool`)
+The boolean data type represents one of 2 values : True or Flase These values are essential for controlling
+program flow making decisions , and evaluating conditions.
+
+Basic boolean values -> ./Boolean.py 
