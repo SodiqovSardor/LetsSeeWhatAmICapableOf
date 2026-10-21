@@ -1,8 +1,8 @@
 # Python Data Types
 
 > **Lesson date:** 20/10/2026
-> **Covers:** `int` · `float` · `str`
-> **Code examples live in:** `Integer.py`, `Float.py`, `Strings.py`
+> **Covers:** `int` · `float` · `str` · `bool`
+> **Code examples live in:** `Integer.py`, `Float.py`, `Strings.py`, `Boolean.py`
 
 ---
 
@@ -13,6 +13,7 @@
 | 1 | **Integer** (`int`) | Whole numbers | [→ Integer](#1-integer-int) |
 | 2 | **Float** (`float`) | Numbers with a decimal point | [→ Float](#2-floating-point-float) |
 | 3 | **String** (`str`) | Text — words, sentences, anything in quotes | [→ String](#3-string-str) |
+| 4 | **Boolean** (`bool`) | True or False | [→ Boolean](#4-boolean-bool) |
 
 ---
 
@@ -178,12 +179,129 @@ second_char = name[1]  # "a"  → second letter
 
 ---
 
-> **Note:** Python has very powerful **string methods**, but this is the
-> first documentation — just the starting point. They come in the next
-> documentation.
-
 # 4. Boolean (`bool`)
-The boolean data type represents one of 2 values : True or Flase These values are essential for controlling
-program flow making decisions , and evaluating conditions.
 
-Basic boolean values -> ./Boolean.py 
+**The boolean data type represents one of two values: `True` or `False`.**
+These values are essential for controlling program flow, making decisions,
+and evaluating conditions.
+
+## Basic boolean values
+
+See the top of `Boolean.py`:
+
+```python
+is_logged_in = True
+is_premium_acc = False
+```
+
+Booleans are not strings — `True` and `False` are **keywords**, not text in quotes.
+
+## Booleans from comparison operators
+
+Comparison operators **return** a boolean:
+
+| Operator | Meaning | Example | Result |
+|----------|---------|---------|--------|
+| `==` | Equal to | `5 == 5` | `True` |
+| `!=` | Not equal to | `5 != 3` | `True` |
+| `>` | Greater than | `10 > 3` | `True` |
+| `<` | Less than | `2 < 5` | `True` |
+| `>=` | Greater or equal | `5 >= 5` | `True` |
+| `<=` | Less or equal | `4 <= 6` | `True` |
+
+```python
+age = 25
+is_adult = age >= 18      # True
+is_senior = age >= 65     # False
+names_match = "Sarah" == "sarah"  # False (case-sensitive)
+```
+
+> **Notice:** `"Sarah" == "sarah"` is `False` because Python is
+> **case-sensitive** — capital `S` vs lowercase `s`.
+
+## Logical operators — combining conditions
+
+| Operator | Name | Result |
+|----------|------|--------|
+| `and` | Logical AND | `True` only if **both** sides are `True` |
+| `or` | Logical OR | `True` if **either** side is `True` |
+| `not` | Logical NOT | Flips `True` to `False`, `False` to `True` |
+
+### `and` — both must be true
+
+```python
+is_logged_in = True
+has_premium_account = False
+can_access_premium = is_logged_in and has_premium_account  # False
+```
+
+> **Why `False`?** `and` requires **both** sides to be `True`.
+> Here we have `True and False` → `False`.
+
+### `or` — at least one must be true
+
+```python
+can_view_content = is_logged_in or has_premium_account  # True
+```
+
+> **Why `True`?** `or` only needs **one** side to be `True`.
+> `True or False` → `True`.
+> Only `False or False` gives `False`.
+
+### `not` — flip the value
+
+```python
+is_regular_user = not has_premium_account  # True
+```
+
+> **Why `True`?** `has_premium_account` is `False`, so `not False` → `True`.
+> Think of `not` as a switch: it always gives you the opposite.
+
+## Complex conditions
+
+You can combine multiple comparisons and logical operators:
+
+```python
+is_target_demographic = (age >= 18 and age <= 35) and is_logged_in  # True
+```
+
+> **Read it left to right:** Is age between 18 and 35 **AND** is the user logged in?
+> Parentheses group the age check together, then the `and is_logged_in` adds the second requirement.
+
+## Converting other types to `bool`
+
+Python has a concept of **truthiness** — most values convert to `True`,
+but a few are "falsy" and convert to `False`:
+
+| Value | `bool(value)` |
+|-------|---------------|
+| `0` | `False` |
+| `0.0` | `False` |
+| `""` (empty string) | `False` |
+| `[]` (empty list) | `False` |
+| `None` | `False` |
+| **Anything else** | **`True`** |
+
+```python
+bool(0)        # False
+bool(42)       # True
+bool("")       # False
+bool("hello")  # True
+bool([])       # False
+bool([1, 2])   # True
+```
+
+## Where booleans are used in real applications
+
+- User authentication (logged in / logged out)
+- Feature flags and permissions
+- Form validation (is this email valid?)
+- Game logic (is the player alive? has the level been completed?)
+- Conditional rendering in web apps
+- Loop control and branching
+
+---
+
+> **Note:** Booleans are the foundation of **control flow** — `if` statements,
+> `while` loops, and ternary expressions all run on boolean logic.
+> That comes in the next documentation.
